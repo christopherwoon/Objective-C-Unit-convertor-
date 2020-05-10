@@ -1,0 +1,48 @@
+#import "ViewController.h"
+
+double convertUnitonetoUnittwo(double unitOnevalue){double unitTwovalue;
+    
+    unitTwovalue =  unitOnevalue /100 ;
+    return unitTwovalue;
+}
+
+double convertUnitonetoUnitthree(double unitonevalue){double unitThreevalue; unitThreevalue = unitonevalue /1000000; return unitThreevalue;
+    
+}
+
+double convertUnitonetoUnitfour(double unitonevalue){double unitFourvalue; unitFourvalue = unitonevalue /30.48; return unitFourvalue;
+}
+
+@interface ViewController ()
+
+@property (weak, nonatomic) IBOutlet UITextField *input;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segment_controller;
+
+@property (weak, nonatomic) IBOutlet UILabel *output;
+
+@end
+
+@implementation ViewController
+- (IBAction)update:(id)sender {
+    NSMutableString *buf = [NSMutableString new];
+    double userInput = [self.input.text doubleValue];
+    
+    if(self.segment_controller.selectedSegmentIndex==0 ){double unitTwovalue = convertUnitonetoUnittwo(userInput);
+        [buf appendString:[@ (unitTwovalue) stringValue]];}
+    
+    else if (self.segment_controller.selectedSegmentIndex==1) {double unitThreevalue = convertUnitonetoUnitthree(userInput);
+        [buf appendString: [@ (unitThreevalue) stringValue]];}
+    
+    else {double unitFourvalue = convertUnitonetoUnitfour(userInput);
+        [buf appendString:[@ (unitFourvalue) stringValue]];}
+    
+    self.output.text =buf;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+}
+
+
+@end
